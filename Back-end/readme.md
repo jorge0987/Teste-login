@@ -21,7 +21,7 @@
 
 - As questões devem ser entregues em ATÉ 3 dias, os 3 dias são contados a partir do envio das questões ao Candidato(a).
 
-- O Envio das Respostas deve ser realizado em um Repositorio Privado, desta forma o candidato(a) deverá gerar um Link e Envia-lo no LinkedIn de Douglas Negrisolli e adicionar os usuários: @fnsdeividy @joalissongomes1994 como Membro do Repositorio para que as respostas fiquem visiveis.
+- O Envio das Respostas deve ser realizado em um Repositorio Privado, desta forma o candidato(a) deverá gerar um Link e Envia-lo no LinkedIn de Douglas Negrisolli e adicionar os usuários: @fnsdeividy @joalissongomes1994 @dnegrisolli como Membro do Repositorio para que as respostas fiquem visiveis.
 
 <hr>
 
@@ -45,6 +45,18 @@ Ao final da construção do Código o Candidato(a) deverá enviar o que foi cons
 - Clone o projeto
 - No terminal rode o comando yarn / npm install (caso utilize npm)
 - Após o download das dependências rode no terminal o comando: yarn start / npm start
+- Rotas: POST:(/user/cadaster) e POST: (/login)
+
+
+Input:
+```JSON
+{
+"name": "Fulano",
+"password": "senha"
+}
+
+```
+
 
 
 <hr>
