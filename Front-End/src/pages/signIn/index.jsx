@@ -1,22 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import api from "../../services/api";
-import {
-  Container,
-  FormGroup,
-  TextField,
-  InputAdornment,
-  Typography,
-} from "@mui/material";
+import { FormGroup, TextField, InputAdornment } from "@mui/material";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import Button from "@mui/material/Button";
-import Snackbar from "@mui/material/Snackbar";
-import CloseIcon from "@mui/icons-material/Close";
-import Alert from "@mui/material/Alert";
-import Stack from "@mui/material/Stack";
-import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
 import IconButton from "@mui/material/IconButton";
 import "./styles.css";
 
@@ -53,23 +41,12 @@ const ButtonCadastrar = styled(Button)`
   }
   a {
     text-decoration: none;
-    margin-left: 4px; 
-   
+    margin-left: 4px;
   }
 `;
 
 const SignIn = () => {
-  const [open, setOpen] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
-  const [openAccess, setOpenAccess] = React.useState(false);
   const [showPassword, setShowPassword] = React.useState(false);
-
-  function handleClose(event, reason) {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpen(false);
-  }
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -185,7 +162,7 @@ const SignIn = () => {
       <br />
       <br />
       <ButtonCadastrar>
-        <span> Ainda não possui uma conta? {" "} </span>
+        <span> Ainda não possui uma conta? </span>
         <a
           href="/signup"
           color="primary"

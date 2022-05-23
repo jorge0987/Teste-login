@@ -2,20 +2,11 @@ import styled from "styled-components";
 import React, { useState } from "react";
 
 import api from "../../services/api";
-import {
-  Container,
-  FormGroup,
-  TextField,
-  InputAdornment,
-} from "@mui/material";
+import { Container, FormGroup, TextField, InputAdornment } from "@mui/material";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import Button from "@mui/material/Button";
-import Snackbar from "@mui/material/Snackbar";
-import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
 import ReCAPTCHA from "react-google-recaptcha";
-import Alert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 
 const Form = styled.form`
@@ -64,27 +55,16 @@ const ButtonCadastrar = styled(Button)`
   }
 `;
 
-
 const Title = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
-
 `;
-
-
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [tipo, setTipo] = useState(null);
   const [verificarRobo, setVerificarRobo] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const [openError, setOpenError] = useState(false);
-  const [openRecaptch, setOpenRecaptch] = useState(false);
-  const [openTipoUsuario, setOpenTipoUsuario] = useState(false);
-  const [openAccess, setOpenAccess] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -92,7 +72,6 @@ const SignUp = () => {
       email: "",
       password: "",
       confirmPassword: "",
-      tipo: "",
     },
     validationSchema: Yup.object({
       username: Yup.string().required("Campo Obrigatório"),
@@ -132,20 +111,15 @@ const SignUp = () => {
     event.preventDefault();
   };
 
-  function handleClose(event, reason) {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpenTipoUsuario(false);
-    setOpenError(false);
-    setOpenRecaptch(false);
-  }
-
   //select
 
   async function request(values) {
     try {
-      const response = await api.post("/user/cadaster", values);
+      const response = await api.post("/user/cadaster", {
+        name: values.username,
+        password: values.password,
+        email: values.email,
+      });
 
       console.log(response);
     } catch (error) {
@@ -155,15 +129,11 @@ const SignUp = () => {
 
   return (
     <StyledSignIn>
-    
       <Form>
         <Container style={{ maxWidth: 600 }}>
-            <Title>One Blue APP</Title>
+          <Title>One Blue APP</Title>
           <form onSubmit={formik.handleSubmit}>
-           
-            <FormGroup>
-             
-            </FormGroup>
+            <FormGroup></FormGroup>
             {/* ------------------------------------------------------------------- */}
 
             {/* {verificarRobo == true ? ( */}
@@ -313,18 +283,7 @@ const SignUp = () => {
                     Cadastro efetuado com sucesso!
                   </Alert>
                 </Snackbar>
-                <Snackbar
-                  anchorOrigin={{
-                    vertical: "bottom",
-                    horizontal: "center",
-                  }}
-                  open={openTipoUsuario}
-                  autoHideDuration={2500}
-                  onClose={handleClose}
-                >
-                  <Alert severity="warning" onClose={handleClose}>
-                    Informe o tipo de Usuário.
-                  </Alert>
+               
                 </Snackbar>
                 <Snackbar
                   anchorOrigin={{
@@ -354,7 +313,6 @@ const SignUp = () => {
                 </Snackbar> */}
               </FormGroup>
 
-           
               <DivRecaptcha>
                 {/* recaptcha ---------------------------------- */}
                 <ReCAPTCHA
@@ -379,7 +337,6 @@ const SignUp = () => {
                   Cadastrar{" "}
                 </Button>
               </FormGroup>
-             
             </Container>
 
             <ButtonCadastrar>
